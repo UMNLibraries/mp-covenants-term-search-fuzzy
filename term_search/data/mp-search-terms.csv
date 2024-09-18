@@ -1,0 +1,48 @@
+term,prefix,suffix,tolerance,bool_exception,exception_type
+african,,,2,,
+alien,"$s",,2,,
+armenian,,,2,,
+aryan,"$s",,2,,
+caucasian,,,3,,
+chinese,,,2,,
+citizen,,,2,,
+colored,,,2,,
+domestic servants,,,2,,
+death certificate,,,2,TRUE,death_cert
+certificate of death,,,2,TRUE,death_cert
+date of death,,,2,TRUE,death_cert
+name of deceased,,,2,TRUE,death_cert
+ethiopian,,,2,,
+hebrew,,,2,,
+hindu,,,2,,
+indian ,"$s","$s",2,,
+irish,,,2,,
+italian,,,2,,
+japanese,,,2,,
+jew ,"$s","$s",2,,
+jewish,,,2,,
+malay,"$s",,2,,
+mexican,,,2,,
+mongolian,,,2,,
+moorish,,,2,,
+mulatto,,,2,,
+mulato,,,2,,
+nationality,,,2,,
+not white,"$s",,2,,
+negro,,,2,,
+occupied by any,,,2,,
+persian,,,2,,
+person not of,,,2,,
+persons not of,,,2,,
+polish,"$s",,2,,
+racial,,,2,,
+report of transfer,,,2,TRUE,mil_discharge
+report of separation,,,2,TRUE,mil_discharge
+transfer or discharge,,,2,TRUE,mil_discharge
+blood group,,,2,TRUE,mil_discharge
+semetic,,,2,,
+semitic,,,2,,
+simitic,,,2,,
+syrian,,,2,,
+turkish,,,2,,
+white race,,,2,,

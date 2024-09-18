@@ -1,5 +1,7 @@
+import os
 import re
 import regex
+import csv
 import json
 import urllib.parse
 import boto3
@@ -31,61 +33,74 @@ covenants-deeds-images
 
 s3 = boto3.client('s3')
 
-covenant_flags = [
-    'african',
-    # ' alien',
-    'armenian',
-    ' aryan',
-    'caucasian',
-    'cau-casian',
-    'cauca-sian',
-    'caucasion',
-    'cau-casion',
-    'cauca-sion',
-    'caucausian',
-    'chinese',
-    # 'citizen',
-    'colored',
-    'domestic servants',
-    'death certificate',  # Used to flag as exception
-    'certificate of death',  # Used to flag as exception
-    'date of death',  # Used to flag as exception
-    'name of deceased',  # Used to flag as exception
-    'ethiopian',
-    'hebrew',
-    'hindu',
-    ' indian ',
-    'irish',
-    'italian',
-    'japanese',
-    ' jew ',
-    'jewish',
-    ' malay',
-    'mexican',
-    'mongolian',
-    'moorish',
-    'mulatto',
-    'mulato',
-    'nationality',
-    ' not white',
-    'negro',
-    'occupied by any',
-    'persian',
-    'person not of',
-    'persons not of',
-    ' polish',
-    'racial',
-    'report of transfer',  # Used to flag as exception
-    'report of separation',  # Used to flag as exception
-    'transfer or discharge',  # Used to flag as exception
-    'blood group',  # Used to flag as exception
-    'semetic',
-    'semitic',
-    'simitic',
-    'syrian',
-    'turkish',
-    'white race',
-]
+# covenant_flags = [
+#     'african',
+#     # ' alien',
+#     'armenian',
+#     ' aryan',
+#     'caucasian',
+#     'cau-casian',
+#     'cauca-sian',
+#     'caucasion',
+#     'cau-casion',
+#     'cauca-sion',
+#     'caucausian',
+#     'chinese',
+#     # 'citizen',
+#     'colored',
+#     'domestic servants',
+#     'death certificate',  # Used to flag as exception
+#     'certificate of death',  # Used to flag as exception
+#     'date of death',  # Used to flag as exception
+#     'name of deceased',  # Used to flag as exception
+#     'ethiopian',
+#     'hebrew',
+#     'hindu',
+#     ' indian ',
+#     'irish',
+#     'italian',
+#     'japanese',
+#     ' jew ',
+#     'jewish',
+#     ' malay',
+#     'mexican',
+#     'mongolian',
+#     'moorish',
+#     'mulatto',
+#     'mulato',
+#     'nationality',
+#     ' not white',
+#     'negro',
+#     'occupied by any',
+#     'persian',
+#     'person not of',
+#     'persons not of',
+#     ' polish',
+#     'racial',
+#     'report of transfer',  # Used to flag as exception
+#     'report of separation',  # Used to flag as exception
+#     'transfer or discharge',  # Used to flag as exception
+#     'blood group',  # Used to flag as exception
+#     'semetic',
+#     'semitic',
+#     'simitic',
+#     'syrian',
+#     'turkish',
+#     'white race',
+# ]
+
+def load_terms():
+    # print(os.getcwd())
+    # with open(os.getcwd() + '/term_search/data/mp-search-terms.csv', 'rb') as term_csv:
+    terms = []
+    with open(os.getcwd() + '/term_search/data/mp-search-terms.csv') as term_csv:
+        # reader = csv.DictReader(term_csv, escapechar='\\')
+        reader = csv.DictReader(term_csv)
+        for row in reader:
+            # row['prefix'] = row['prefix'].replace('$', f"\")
+            # row['suffix'] = row['suffix'].replace('$', "\")
+            terms.append(row)
+        return terms
 
 def load_json(bucket, key):
     content_object = s3.get_object(Bucket=bucket, Key=key)
@@ -111,8 +126,24 @@ def test_match(term, text):
     # return False
 
     '''Regex fuzzy'''
+    # # pattern = regex.compile(f'(?:{term})')
+    # pattern = regex.compile(f'(?:{term})' + '{e<=3}')
+    # print(pattern)
+    # if regex.match(pattern, text):
+    #     return True
+    # return False
+
+    '''Regex fuzzy complex object'''
     # pattern = regex.compile(f'(?:{term})')
-    pattern = regex.compile(f'(?:{term})' + '{e<=3}')
+    tolerance = ''
+    try:
+        tolerance_int = int(term['tolerance'])
+        if tolerance_int > 0:
+            tolerance = '{e<=' + str(term['tolerance']) + '}'
+    except:
+        raise
+
+    pattern = regex.compile(f"{term['prefix']}(?:{term['term']}){tolerance}{term['suffix']}".replace('$s', ' '))
     print(pattern)
     if regex.match(pattern, text):
         return True
@@ -148,15 +179,18 @@ def lambda_handler(event, context):
     key_parts = re.search(r'ocr/json/(?P<workflow>[A-z\-]+)/(?P<remainder>.+)\.(?P<extension>[a-z]+)', key).groupdict()
     lines = [block for block in ocr_result['Blocks'] if block['BlockType'] == 'LINE']
 
+    covenant_flags = load_terms()
+    # print(covenant_flags)
+
     results = {}
     for line_num, line in enumerate(lines):
         text_lower = line['Text'].lower()
         for term in covenant_flags:
             if test_match(term, text_lower):
-                if term not in results:
-                    results[term] = [line_num]
+                if term['term'] not in results:
+                    results[term['term']] = [line_num]
                 else:
-                    results[term].append(line_num)
+                    results[term['term']].append(line_num)
 
     bool_hit = False
     match_file = None
