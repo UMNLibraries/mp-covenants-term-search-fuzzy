@@ -42,68 +42,36 @@ def death_cert_table_input_1():
     return build_lambda_input(s3_bucket, "ocr/json/mn-sherburne-county/RECEXPORT/Abstract 103872_SPLITPAGE_2.json")
 
 
+def term_test_builder(term, term_variations, true_or_false=True):
+    covenant_flags = app.load_terms()
+    term_fuzzy = [f for f in covenant_flags if f['term'] == term][0]
+
+    for test_term in term_variations:
+        assert app.test_match(term_fuzzy, test_term) == true_or_false
+
 def test_term_basic():
-    caucasian_fuzzy = {'term': 'caucasian', 'tolerance': 3, 'prefix': '', 'suffix': ''}
-    # Trues
-    assert app.test_match(caucasian_fuzzy, 'caucasian') == True
-    assert app.test_match(caucasian_fuzzy, 'cau-casian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasion') == True
-    assert app.test_match(caucasian_fuzzy, 'cau-casion') == True
-    assert app.test_match(caucasian_fuzzy, 'cauca-sion') == True
-    assert app.test_match(caucasian_fuzzy, 'caucausian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasin') == True
-    assert app.test_match(caucasian_fuzzy, 'aucasian') == True
-    assert app.test_match(caucasian_fuzzy, 'caboasian') == True
-    assert app.test_match(caucasian_fuzzy, 'can-casia') == True
-    assert app.test_match(caucasian_fuzzy, 'cancasian') == True
-    assert app.test_match(caucasian_fuzzy, 'capcasian') == True
-    assert app.test_match(caucasian_fuzzy, 'caticasian') == True
-    assert app.test_match(caucasian_fuzzy, 'cau casian') == True
-    assert app.test_match(caucasian_fuzzy, 'cauc- asia') == True
-    assert app.test_match(caucasian_fuzzy, 'caucã¡sian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucagian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucaison') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasia') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasiã¡n') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasiã¤n') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasiar') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasiari') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasien') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasioan') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasisian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucasism') == True
-    assert app.test_match(caucasian_fuzzy, 'caucassian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucastan') == True
-    assert app.test_match(caucasian_fuzzy, 'caucastian') == True
-    assert app.test_match(caucasian_fuzzy, 'cauccasian') == True
-    assert app.test_match(caucasian_fuzzy, 'cauccian') == True
-    assert app.test_match(caucasian_fuzzy, 'caucesian') == True
-    assert app.test_match(caucasian_fuzzy, 'caudasian') == True
-    assert app.test_match(caucasian_fuzzy, 'caueasian') == True
-    assert app.test_match(caucasian_fuzzy, 'caugasian') == True
-    assert app.test_match(caucasian_fuzzy, 'cauoasian') == True
-    assert app.test_match(caucasian_fuzzy, 'causas ian') == True
-    assert app.test_match(caucasian_fuzzy, 'causcasian') == True
-    assert app.test_match(caucasian_fuzzy, 'caussian') == True
-    assert app.test_match(caucasian_fuzzy, 'concasion') == True
-    # assert app.test_match(caucasian_fuzzy, 'concession') == True
-    assert app.test_match(caucasian_fuzzy, 'coucasion') == True
-    assert app.test_match(caucasian_fuzzy, 'daucasi') == True
-    assert app.test_match(caucasian_fuzzy, 'daucasian') == True
-    assert app.test_match(caucasian_fuzzy, 'daucasion') == True
-    # assert app.test_match(caucasian_fuzzy, 'gaucas') == True
-    assert app.test_match(caucasian_fuzzy, 'gaucasian') == True
-    assert app.test_match(caucasian_fuzzy, 'gaucasion') == True
-    assert app.test_match(caucasian_fuzzy, 'saucasian') == True
-    assert app.test_match(caucasian_fuzzy, 'vaucasian') == True
 
-    # # assert app.test_match('caucasian race', 'cã¡ugasiah rage') == True
-    # assert app.test_match('caucasian race', 'gaucasian cage') == True
-    # assert app.test_match('caucasian race', 'caueasien rage') == True
+    term_test_builder('caucasian', [' caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage'], True)
 
-    # # Falses
-    # assert app.test_match(' aryan', 'Maryanne') == False
+    term_test_builder('caucasian', ['concession', 'gaucas', 'cã¡ugasiah rage'], False)
 
+    term_test_builder('aryan', [' aryan'], True)
+    term_test_builder('aryan', ['Maryanne'], False)
+
+    term_test_builder('negro', ['negro', 'negroes', 'negroid', 'given to negroes'], True)
+
+    term_test_builder('colored', ['colored', 'c olored', 'cblored'], True)
+
+    term_test_builder('alien', ['alien'], True)
+    term_test_builder('alien', ['valient', 'dalience', 'daliance', 'alienate'], False)
+
+    term_test_builder('indian', ['indian', ' indian '], True)
+    term_test_builder('indian', ['indiana'], False)
+
+    term_test_builder('semetic', ['semetic', 'semitic', 'simitic'], True)
+
+    term_test_builder('not white', ['people who are not white.'], True)
+    
 
 def test_death_cert_table_input_1(death_cert_table_input_1):
 

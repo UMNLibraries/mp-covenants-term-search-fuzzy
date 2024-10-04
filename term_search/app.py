@@ -33,72 +33,21 @@ covenants-deeds-images
 
 s3 = boto3.client('s3')
 
-# covenant_flags = [
-#     'african',
-#     # ' alien',
-#     'armenian',
-#     ' aryan',
-#     'caucasian',
-#     'cau-casian',
-#     'cauca-sian',
-#     'caucasion',
-#     'cau-casion',
-#     'cauca-sion',
-#     'caucausian',
-#     'chinese',
-#     # 'citizen',
-#     'colored',
-#     'domestic servants',
-#     'death certificate',  # Used to flag as exception
-#     'certificate of death',  # Used to flag as exception
-#     'date of death',  # Used to flag as exception
-#     'name of deceased',  # Used to flag as exception
-#     'ethiopian',
-#     'hebrew',
-#     'hindu',
-#     ' indian ',
-#     'irish',
-#     'italian',
-#     'japanese',
-#     ' jew ',
-#     'jewish',
-#     ' malay',
-#     'mexican',
-#     'mongolian',
-#     'moorish',
-#     'mulatto',
-#     'mulato',
-#     'nationality',
-#     ' not white',
-#     'negro',
-#     'occupied by any',
-#     'persian',
-#     'person not of',
-#     'persons not of',
-#     ' polish',
-#     'racial',
-#     'report of transfer',  # Used to flag as exception
-#     'report of separation',  # Used to flag as exception
-#     'transfer or discharge',  # Used to flag as exception
-#     'blood group',  # Used to flag as exception
-#     'semetic',
-#     'semitic',
-#     'simitic',
-#     'syrian',
-#     'turkish',
-#     'white race',
-# ]
-
 def load_terms():
-    # print(os.getcwd())
-    # with open(os.getcwd() + '/term_search/data/mp-search-terms.csv', 'rb') as term_csv:
+    """Load CSV of complex term objects to be tested.
+    
+    See test_match() documentation for example term object
+
+    Args:
+        None
+
+    Returns:
+        list of dictionaries, with each dict being a complex term object.
+    """
     terms = []
     with open(os.getcwd() + '/term_search/data/mp-search-terms.csv') as term_csv:
-        # reader = csv.DictReader(term_csv, escapechar='\\')
         reader = csv.DictReader(term_csv)
         for row in reader:
-            # row['prefix'] = row['prefix'].replace('$', f"\")
-            # row['suffix'] = row['suffix'].replace('$', "\")
             terms.append(row)
         return terms
 
@@ -119,38 +68,54 @@ def save_match_file(results, bucket, key_parts):
     )
     return out_key
 
-def test_match(term, text):
-    '''Super basic version'''
-    # if term in text:
-    #     return True
-    # return False
+def test_match(term_obj, text):
+    """Searches for a regex fuzzy match based on a target term object.
 
-    '''Regex fuzzy'''
-    # # pattern = regex.compile(f'(?:{term})')
-    # pattern = regex.compile(f'(?:{term})' + '{e<=3}')
-    # print(pattern)
-    # if regex.match(pattern, text):
-    #     return True
-    # return False
+    Using Python's 'regex' library (not built-in re), tests if a given term is in the provided text,
+    which in the Deed Machine is generally one line of text from an OCRed document.
 
-    '''Regex fuzzy complex object'''
-    # pattern = regex.compile(f'(?:{term})')
+    Args:
+        term_obj: A dictionary object which includes the basic term, a tolerance value
+            to control how fuzzy the search can be, and an optional suffix to require for a match
+            (usually a word break or space). In order to avoid escape character weirdness, '$b' will be converted to '\\b' in the final regex
+
+            Example term object:
+                {
+                    'term': 'death certificate',
+                    'tolerance': 2,
+                    'suffix': '$b',
+                    'bool_exception': True,  # Is this an exception term? Not yet being used
+                    'exception_type': 'death_cert'  # What type of exception? Not yet being used
+                }
+
+            Will produce this regular expression:
+                '\\b(?:death certificate){e<=2'}\\b'
+
+            This will search for the string "death certificate" preceded by a word boundary,
+            with a fuzziness tolerance of 2, followed by a word boundary
+
+        text: A string to test for the presence of the term
+
+    Returns:
+        True or False
+    """
     tolerance = ''
     try:
-        tolerance_int = int(term['tolerance'])
+        tolerance_int = int(term_obj['tolerance'])
         if tolerance_int > 0:
-            tolerance = '{e<=' + str(term['tolerance']) + '}'
+            tolerance = '{e<=' + str(term_obj['tolerance']) + '}'
     except:
         raise
 
-    pattern = regex.compile(f"{term['prefix']}(?:{term['term']}){tolerance}{term['suffix']}".replace('$s', ' '))
-    print(pattern)
-    if regex.match(pattern, text):
+    # pattern = regex.compile(f"{term['prefix']}(?:{term['term']}){tolerance}{term['suffix']}".replace('$s', ' '))
+    pattern = regex.compile(f"\\b(?:{term_obj['term']}){tolerance}{term_obj['suffix']}".replace('$b', '\\b'))
+    # print(pattern)
+    if regex.search(pattern, text):
         return True
     return False
 
 def lambda_handler(event, context):
-    """ For each term in covenant_flags, check OCR JSON file received from previous step for existance of term. This is a really simple CNTRL + F style search, no partial matching, regex, fuzzy, etc. Some of the terms are actually exceptions rather than covenant hits, and once they reach the Django stage, will be used to mark this page as exempt from consideration as being considered as a racial covenant. Common examples of exceptions include birth certificates and military discharges, which often contain racial information but are not going to contain a racial covenant. """
+    """ For each term in covenant_flags, check OCR JSON file received from previous step for existance of term. This uses a fuzzy search based on the Python 'regex' library (not the built-in re library). Some of the terms are actually exceptions rather than covenant hits, and once they reach the Django stage, will be used to mark this page as exempt from consideration as being considered as a racial covenant. Common examples of exceptions include birth certificates and military discharges, which often contain racial information but are not going to contain a racial covenant. """
     
     if 'Records' in event:
         # Get the object from a more standard put event
@@ -177,6 +142,8 @@ def lambda_handler(event, context):
         raise e
 
     key_parts = re.search(r'ocr/json/(?P<workflow>[A-z\-]+)/(?P<remainder>.+)\.(?P<extension>[a-z]+)', key).groupdict()
+
+    # Extract individual lines of text for analysis
     lines = [block for block in ocr_result['Blocks'] if block['BlockType'] == 'LINE']
 
     covenant_flags = load_terms()
