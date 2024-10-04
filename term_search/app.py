@@ -45,7 +45,18 @@ def load_terms():
         list of dictionaries, with each dict being a complex term object.
     """
     terms = []
-    with open(os.getcwd() + '/term_search/data/mp-search-terms.csv') as term_csv:
+
+    try:
+        # Runtime / deployed
+        f = open('./data/mp-search-terms.csv')
+    except FileNotFoundError:
+        try:
+            # Local testing
+            f = open('./term_search/data/mp-search-terms.csv')
+        except FileNotFoundError:
+            raise
+
+    with f as term_csv:
         reader = csv.DictReader(term_csv)
         for row in reader:
             terms.append(row)
