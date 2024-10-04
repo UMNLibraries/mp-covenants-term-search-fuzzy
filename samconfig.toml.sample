@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "mp-covenants-term-search-basic"
+stack_name = "mp-covenants-term-search-fuzzy"
 s3_bucket = "XXXX"
-s3_prefix = "mp-covenants-term-search-basic"
+s3_prefix = "mp-covenants-term-search-fuzzy"
 region = "XXXX"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []

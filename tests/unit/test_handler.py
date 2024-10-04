@@ -50,8 +50,9 @@ def term_test_builder(term, term_variations, true_or_false=True):
         assert app.test_match(term_fuzzy, test_term) == true_or_false
 
 def test_term_basic():
+    """Manually testing select terms loaded via spreadsheet"""
 
-    term_test_builder('caucasian', [' caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage'], True)
+    term_test_builder('caucasian', [' caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'], True)
 
     term_test_builder('caucasian', ['concession', 'gaucas', 'cã¡ugasiah rage'], False)
 
@@ -62,15 +63,42 @@ def test_term_basic():
 
     term_test_builder('colored', ['colored', 'c olored', 'cblored'], True)
 
-    term_test_builder('alien', ['alien'], True)
-    term_test_builder('alien', ['valient', 'dalience', 'daliance', 'alienate'], False)
+    # term_test_builder('alien', ['alien'], True)
+    # term_test_builder('alien', ['valient', 'dalience', 'daliance', 'alienate'], False)
 
     term_test_builder('indian', ['indian', ' indian '], True)
     term_test_builder('indian', ['indiana'], False)
 
-    term_test_builder('semetic', ['semetic', 'semitic', 'simitic'], True)
+    term_test_builder('semitic', ['semetic', 'semitic', 'simitic'], True)
 
     term_test_builder('not white', ['people who are not white.'], True)
+
+
+def test_term_csv_read():
+    covenant_flags = app.load_terms()
+    caucasian_row = [f for f in covenant_flags if f['term'] == 'caucasian'][0]
+    caucasian_variations = [t.replace("'", "") for t in caucasian_row['test_variations'].split(',')]
+
+    print(caucasian_variations)
+
+    assert len(caucasian_variations) > 10
+
+def test_terms_from_csv():
+    """Manually testing ALL terms loaded via spreadsheet against their listed positive and negative variations."""
+    covenant_flags = app.load_terms()
+
+    for term_obj in covenant_flags:
+        test_variations = [t.replace("'", "") for t in term_obj['test_variations'].split(',')]
+        negative_variations = [t.replace("'", "") for t in term_obj['negative_variations'].split(',')]
+        print(test_variations)
+
+        # Testing all the strings that should match in the CSV
+        for variation in test_variations:
+            assert app.test_match(term_obj, variation) == True
+
+        # Testing all the strings that should NOT match in the CSV
+        for variation in negative_variations:
+            assert app.test_match(term_obj, variation) == False
     
 
 def test_death_cert_table_input_1(death_cert_table_input_1):
