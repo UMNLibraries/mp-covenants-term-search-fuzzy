@@ -90,7 +90,6 @@ def test_terms_from_csv():
     for term_obj in covenant_flags:
         test_variations = [t.replace("'", "") for t in term_obj['test_variations'].split(',')]
         negative_variations = [t.replace("'", "") for t in term_obj['negative_variations'].split(',')]
-        print(test_variations)
 
         # Testing all the strings that should match in the CSV
         for variation in test_variations:

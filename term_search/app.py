@@ -68,7 +68,7 @@ def load_json(bucket, key):
     return json.loads(file_content)
 
 def save_match_file(results, bucket, key_parts):
-    out_key = f"ocr/hits/{key_parts['workflow']}/{key_parts['remainder']}.json"
+    out_key = f"ocr/hits_fuzzy/{key_parts['workflow']}/{key_parts['remainder']}.json"
 
     s3.put_object(
         Body=json.dumps(results),
