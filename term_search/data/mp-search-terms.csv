@@ -11,7 +11,7 @@ brown race,,1,,,'brown race',
 caucasian,$b,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'","concession', 'gaucas', 'cã¡ugasiah rage'"
 chinese,,1,,,'chinese',
 citizen,,1,TRUE,bad_solo,'citizen',
-colored,,1,,,"colored', 'c olored', 'cblored'",
+colored,$b,1,,,"colored', 'c olored', 'cblored'",State of Colorado'
 decent,$b,0,,,'decent',
 descent,$b,1,,,'descent',
 different race,,1,,,'different race',
@@ -54,13 +54,15 @@ nigger,$b,1,,,'nigger',
 native,,1,,,'native',
 nationality,,1,,,'nationality',
 not white,,1,,,people who are not white.',
-negro,$b,2,,,"negro', 'negroes', 'negroid', 'given to negroes'","negotiated by', 'negotiable', 'NETROPOLITAN'"
+negro,$b,1,,,negro',"negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township', 'neirs', 'Metro Title Corporation', 'near'"
+negroes,$b,1,,,"negroes', 'given to negroes'","negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township'"
+negroid,$b,1,,,negroid',"negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township'"
 no children,,1,TRUE,ca_non_racial,'no children',
 no minor,,1,TRUE,ca_non_racial,'no minor',
 occupied by any,,1,TRUE,bad_solo,'occupied by any',
 occupy said real property,,1,TRUE,ca_non_racial,'occupy said real property',
 oriental,,1,,,'oriental',
-ottoman,,1,,,'ottoman',
+ottoman,$b,1,,,'ottoman',Theresia Otto'
 part blood,,1,,,'part blood',
 permit the occupancy,,1,,,'permit the occupancy',
 persian,$b,1,,,'persian',"person', 'persuant'"

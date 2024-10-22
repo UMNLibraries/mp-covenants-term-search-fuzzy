@@ -59,7 +59,7 @@ def test_term_basic():
     term_test_builder('aryan', [' aryan'], True)
     term_test_builder('aryan', ['Maryanne'], False)
 
-    term_test_builder('negro', ['negro', 'negroes', 'negroid', 'given to negroes'], True)
+    term_test_builder('negro', ['negro'], True)
 
     term_test_builder('colored', ['colored', 'c olored', 'cblored'], True)
 
