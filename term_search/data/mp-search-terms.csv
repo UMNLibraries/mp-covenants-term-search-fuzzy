@@ -1,14 +1,14 @@
 term,suffix,tolerance,bool_exception,exception_type,test_variations,negative_variations
 african,,1,,,'african',
 another race,,1,,,'another race',
-any person of,,1,,,'any person of',
+any person of,$b,0,,,'any person of',any person or persons asserting'
 any person other,,1,,,'any person other',
 armenian,,1,,,'armenian',
-aryan,$b,1,,,'aryan',Maryanne
+aryan,$b,0,,,'aryan',"Maryanne', 'Bryan', 'Ryan'"
 asiatic,,1,,,'asiatic',
 black race,,1,,,'black race',
 brown race,,1,,,'brown race',
-caucasian,,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'","concession', 'gaucas', 'cã¡ugasiah rage'"
+caucasian,$b,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'","concession', 'gaucas', 'cã¡ugasiah rage'"
 chinese,,1,,,'chinese',
 citizen,,1,TRUE,bad_solo,'citizen',
 colored,,1,,,"colored', 'c olored', 'cblored'",
@@ -17,7 +17,7 @@ descent,$b,1,,,'descent',
 different race,,1,,,'different race',
 disorderly persons,,1,TRUE,ca_non_racial,'disorderly persons',
 domestic servants,,1,,,'domestic servants',
-domestics,,1,,,'domestics',
+domestics,$b,0,,,'domestics',"domestic animals', 'domestic purposes'"
 death certificate,,1,TRUE,death_cert,'death certificate',
 certificate of death,,1,TRUE,death_cert,'certificate of death',
 date of death,,1,TRUE,death_cert,'date of death',
@@ -28,21 +28,21 @@ extraction,,1,,,'extraction',
 filipino,,1,,,'filipino',
 gentile,,1,,,'gentile',
 hawaiian,,1,,,'hawaiian',
-hebrew,$b,1,,,'hebrew','herewith'
-hindu,$b,1,,,'hindu','or hinder the said parties'
+hebrew,$b,1,,,'hebrew',herewith'
+hindu,$b,1,,,'hindu',or hinder the said parties'
 household servant,,1,,,'household servant',
 indian,$b,0,,,"indian', ' indian '",indiana'
 irish,$b,1,,,'irish',
 is forever prohibited,,1,,,'is forever prohibited',
 italian,$b,1,,,'italian',
 japanese,,1,,,'japanese',
-jew,$b,0,,,'jew','new'
+jew,$b,0,,,'jew',new'
 jewish,,1,,,'jewish',
 less than 18 years,,1,TRUE,ca_non_racial,'less than 18 years',
 lineage,,1,,,'lineage',
 lineal descendant,,1,,,'lineal descendant',
 lineal descent,,1,,,'lineal descent',
-malay,,1,,,'malay',
+malay,$b,1,,,'malay',
 malayan,,1,,,'malayan',
 mexican,,1,,,'mexican',
 mongolian,,1,,,'mongolian',
@@ -54,7 +54,7 @@ nigger,$b,1,,,'nigger',
 native,,1,,,'native',
 nationality,,1,,,'nationality',
 not white,,1,,,people who are not white.',
-negro,,1,,,"negro', 'negroes', 'negroid', 'given to negroes'",
+negro,$b,2,,,"negro', 'negroes', 'negroid', 'given to negroes'","negotiated by', 'negotiable', 'NETROPOLITAN'"
 no children,,1,TRUE,ca_non_racial,'no children',
 no minor,,1,TRUE,ca_non_racial,'no minor',
 occupied by any,,1,TRUE,bad_solo,'occupied by any',
@@ -63,14 +63,14 @@ oriental,,1,,,'oriental',
 ottoman,,1,,,'ottoman',
 part blood,,1,,,'part blood',
 permit the occupancy,,1,,,'permit the occupancy',
-persian,,1,,,'persian',person'
+persian,$b,1,,,'persian',"person', 'persuant'"
 person not of,,1,,,'person not of',
 persons not of,,1,,,'persons not of',
 person not wholly,,1,,,'person not wholly',
 persons other than,,1,,,'persons other than',
 philippine,,1,,,'philippine',
 polish,,1,,,'polish',
-poverty,,1,TRUE,ca_non_racial,'poverty',
+poverty,,1,TRUE,ca_non_racial,'poverty',property'
 race only,,1,,,'race only',
 race shall use,,1,,,'race shall use',
 racial,,1,,,'racial',
@@ -86,13 +86,13 @@ semitic,,1,,,"semetic', 'semitic', 'simitic'",
 simitic,,1,,,'simitic',
 servant,,1,,,'servant',
 shall not prevent occupancy,,1,,,'shall not prevent occupancy',
-squaw,$b,1,,,'squaw',"'square', 'in Square No.'"
+squaw,$b,1,,,'squaw',"square', 'in Square No.'"
 such races,,1,,,'such races',
 syrian,,1,,,'syrian',
 turkish,,1,,,'turkish',
 under the age of,,1,TRUE,ca_non_racial,'under the age of',
 used or occupied,,1,,,'used or occupied',
-white or,,1,,,'white or',whole or'
+white or,$b,1,,,'white or',"whole or', 'GUY WHITEFORD', 'White Granite'"
 white person,,1,,,'white person',
 white race,,1,,,'white race',
 years of age or older,,1,TRUE,ca_non_racial,'years of age or older',
