@@ -29,7 +29,7 @@ filipino,,1,,,'filipino',
 gentile,,1,,,'gentile',
 hawaiian,,1,,,'hawaiian',
 hebrew,$b,1,,,'hebrew',herewith'
-hindu,$b,1,,,'hindu',or hinder the said parties'
+hindu,$b,0,,,'hindu',"or hinder the said parties', 'one Hind dred and no/100 Dollars'"
 household servant,,1,,,'household servant',
 indian,$b,0,,,"indian', ' indian '",indiana'
 irish,$b,1,,,'irish',
@@ -42,7 +42,7 @@ less than 18 years,,1,TRUE,ca_non_racial,'less than 18 years',
 lineage,,1,,,'lineage',
 lineal descendant,,1,,,'lineal descendant',
 lineal descent,,1,,,'lineal descent',
-malay,$b,1,,,'malay',
+malay,$b,0,,,'malay',C. A. Maley'
 malayan,,1,,,'malayan',
 mexican,,1,,,'mexican',
 mongolian,,1,,,'mongolian',
