@@ -11,9 +11,8 @@ brown race,,1,,,'brown race',
 caucasian,$b,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'","concession', 'gaucas', 'cã¡ugasiah rage'"
 chinese,,1,,,'chinese',
 citizen,,1,TRUE,bad_solo,'citizen',
-colored,$b,1,,,"colored', 'c olored', 'cblored'",State of Colorado'
-decent,$b,0,,,'decent',
-descent,$b,1,,,'descent',
+colored,$b,1,,,"'colored', 'c olored', 'cblored'",State of Colorado'
+descent,$b,1,,,"'descent', 'decent'",
 different race,,1,,,'different race',
 disorderly persons,,1,TRUE,ca_non_racial,'disorderly persons',
 domestic servants,,1,,,'domestic servants',

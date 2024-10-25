@@ -27,7 +27,7 @@ def build_lambda_input(bucket, infile_json):
         "body": {
             "message": "hello world",
             "bucket": bucket,
-            # "orig": "raw/mn-sherburne-county/batch3/R3Part2/Abstract 88291.jpg",
+            "orig": "raw/mn-sherburne-county/batch3/R3Part2/Abstract 88291.jpg",
             "json": infile_json,
             # "txt": "ocr/txt/mn-sherburne-county/batch3/R3Part2/Abstract 88291.txt",
             # "stats": "ocr/stats/mn-sherburne-county/batch3/R3Part2/Abstract 88291__69727524d8d04bfc99ee0f0bf22584e0.json",
@@ -108,7 +108,7 @@ def test_death_cert_table_input_1(death_cert_table_input_1):
 
     assert ret["statusCode"] == 200
     assert "message" in ret["body"]
-    assert data["message"] == "hello world"
+    assert data["message"] == "search term fuzzy success"
     
     assert data["bool_hit"] == True
     assert data["match_file"] != None
