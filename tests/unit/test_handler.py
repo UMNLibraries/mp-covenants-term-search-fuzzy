@@ -27,8 +27,9 @@ def build_lambda_input(bucket, infile_json):
         "body": {
             "message": "hello world",
             "bucket": bucket,
-            "orig": "raw/mn-sherburne-county/batch3/R3Part2/Abstract 88291.jpg",
-            "json": infile_json,
+            "orig_img": "raw/mn-sherburne-county/batch3/R3Part2/Abstract 88291.jpg",
+            "ocr_json": infile_json,
+            "web_img": "web/mn-sherburne-county/batch3/R3Part2/69727524d8d04bfc99ee0f0bf22584e0.jpg",
             # "txt": "ocr/txt/mn-sherburne-county/batch3/R3Part2/Abstract 88291.txt",
             # "stats": "ocr/stats/mn-sherburne-county/batch3/R3Part2/Abstract 88291__69727524d8d04bfc99ee0f0bf22584e0.json",
             "uuid": "69727524d8d04bfc99ee0f0bf22584e0",
@@ -36,10 +37,33 @@ def build_lambda_input(bucket, infile_json):
         }
     }
 
+
 @pytest.fixture()
 def death_cert_table_input_1():
     """ Generates API GW Event"""
     return build_lambda_input(s3_bucket, "ocr/json/mn-sherburne-county/RECEXPORT/Abstract 103872_SPLITPAGE_2.json")
+
+
+def test_input_output_results(death_cert_table_input_1):
+    ''' Does this run appropriately with output of mp-covenants-resize-image Lambda?'''
+    fixture = death_cert_table_input_1
+
+    ret = app.lambda_handler(fixture, "")
+    data = ret["body"]
+    print(data)
+
+    assert ret["statusCode"] == 200
+    assert data["message"] == "search term fuzzy success"
+
+    assert "uuid" in data
+    assert "orig_img" in data
+    assert "ocr_json" in data
+    assert "bucket" in data
+
+    assert data["bucket"] == fixture['body']['bucket']
+    assert data["uuid"] == fixture['body']['uuid']
+    assert data["orig_img"] == fixture['body']['orig_img']
+    assert data["ocr_json"] == fixture['body']['ocr_json']
 
 
 def term_test_builder(term, term_variations, true_or_false=True):

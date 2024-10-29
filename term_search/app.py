@@ -134,19 +134,19 @@ def lambda_handler(event, context):
         key = urllib.parse.unquote_plus(
             event['Records'][0]['s3']['object']['key'], encoding='utf-8')
         public_uuid = None
-        orig = None
+        orig_img = None
     elif 'detail' in event:
         # Get object from step function with this as first step
         bucket = event['detail']['bucket']['name']
         key = event['detail']['object']['key']
         public_uuid = None  # This could be added from DB or by opening previous JSON records, but would slow down this process
-        orig = None
+        orig_img = None
     else:
         # Coming from previous step function
         bucket = event['body']['bucket']
-        key = event['body']['json']
+        key = event['body']['ocr_json']
         public_uuid = event['body']['uuid']
-        orig = event['body']['orig']
+        orig_img = event['body']['orig_img']
 
     try:
         ocr_result = load_json(bucket, key)
@@ -186,10 +186,12 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body": {
             "message": "search term fuzzy success",
+            "bucket": bucket,
             "bool_hit": bool_hit,
             "match_file": match_file,
+            "ocr_json": key,
             "uuid": public_uuid,
-            "orig": orig
+            "orig_img": orig_img
             # "location": ip.text.replace("\n", "")
         }
     }
