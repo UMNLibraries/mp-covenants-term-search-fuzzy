@@ -133,18 +133,22 @@ def lambda_handler(event, context):
         bucket = event['Records'][0]['s3']['bucket']['name']
         key = urllib.parse.unquote_plus(
             event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+        web_img = urllib.parse.unquote_plus(
+            event['Records'][0]['s3']['object']['web_img'], encoding='utf-8')
         public_uuid = None
         orig_img = None
     elif 'detail' in event:
         # Get object from step function with this as first step
         bucket = event['detail']['bucket']['name']
         key = event['detail']['object']['key']
+        web_img = event['detail']['object']['web_img']
         public_uuid = None  # This could be added from DB or by opening previous JSON records, but would slow down this process
         orig_img = None
     else:
         # Coming from previous step function
         bucket = event['body']['bucket']
         key = event['body']['ocr_json']
+        web_img = event['body']['web_img']
         public_uuid = event['body']['uuid']
         orig_img = event['body']['orig_img']
 
@@ -191,7 +195,8 @@ def lambda_handler(event, context):
             "match_file": match_file,
             "ocr_json": key,
             "uuid": public_uuid,
-            "orig_img": orig_img
+            "orig_img": orig_img,
+            "web_img": web_img,
             # "location": ip.text.replace("\n", "")
         }
     }

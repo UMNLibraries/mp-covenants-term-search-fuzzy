@@ -58,12 +58,14 @@ def test_input_output_results(death_cert_table_input_1):
     assert "uuid" in data
     assert "orig_img" in data
     assert "ocr_json" in data
+    assert "web_img" in data
     assert "bucket" in data
 
     assert data["bucket"] == fixture['body']['bucket']
     assert data["uuid"] == fixture['body']['uuid']
     assert data["orig_img"] == fixture['body']['orig_img']
     assert data["ocr_json"] == fixture['body']['ocr_json']
+    assert data["web_img"] == fixture['body']['web_img']
 
 
 def term_test_builder(term, term_variations, true_or_false=True):
