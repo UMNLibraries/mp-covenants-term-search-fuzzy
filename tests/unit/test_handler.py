@@ -124,6 +124,13 @@ def test_terms_from_csv():
         # Testing all the strings that should NOT match in the CSV
         for variation in negative_variations:
             assert app.test_match(term_obj, variation) == False
+
+def test_winston_salem():
+    ''' Which term is flagging "Winston-Salem"?'''
+    covenant_flags = app.load_terms()
+
+    for term_obj in covenant_flags:
+        assert app.test_match(term_obj, 'Winston-Salem') == False
     
 
 def test_death_cert_table_input_1(death_cert_table_input_1):
