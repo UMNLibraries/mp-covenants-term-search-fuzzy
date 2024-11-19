@@ -1,5 +1,5 @@
 term,suffix,tolerance,bool_exception,exception_type,test_variations,negative_variations
-african,,1,,,'african',
+african,$b,1,,,'african',
 another race,,1,,,'another race',
 any person of,$b,0,TRUE,bad_solo,'any person of',any person or persons asserting'
 armenian,,1,,,'armenian',
@@ -50,7 +50,7 @@ mulato,$b,1,,,'mulato',
 muslim,$b,1,,,'muslim',
 nigger,$b,0,,,'nigger',
 native,$b,0,,,'native',
-nationality,$b,1,,,'nationality',
+nationality,$b,1,TRUE,bad_solo,'nationality',
 not white,$b,0,,,people who are not white.',do not write above this line'
 negro,$b,1,,,negro',"negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township', 'neirs', 'Metro Title Corporation', 'near'"
 negroes,$b,1,,,"negroes', 'given to negroes'","negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township'"
@@ -84,8 +84,8 @@ semites,$b,1,,,'semites',
 semitic,$b,1,,,"semetic', 'semitic', 'simitic'",
 servant,,1,TRUE,bad_solo,'servant',
 shall not prevent occupancy,,1,,,'shall not prevent occupancy',
-squaw,$b,1,,,'squaw',"square', 'in Square No.'"
-such races,,1,,,'such races',
+squaw,$b,0,,,'squaw',"square', 'in Square No.', 'squade'"
+such races,,0,,,'such races','such rates'
 syrian,$b,1,,,'syrian',
 turkish,,1,,,'turkish',
 under the age of,,1,TRUE,ca_non_racial,'under the age of',
