@@ -7,10 +7,15 @@ aryan,$b,0,,,'aryan',"Maryanne', 'Bryan', 'Ryan'"
 asiatic,,1,,,'asiatic',
 black race,,1,,,'black race',
 brown race,,1,,,'brown race',
-caucasian,$b,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian'","concession', 'gaucas', 'cã¡ugasiah rage'"
+"black, brown, yellow",,2,,,"black| brown| yellow', 'black. brown| yellow or Seretic races'",
+black or yellow,$b,2,,,black or yellow',
+caucasian,$b,3,,," caucasian', ' caucasian ', 'cau-casian', 'caucasion', 'cau-casion', 'cauca-sion', 'caucausian', 'caucasin', 'aucasian', 'caboasian', 'can-casia', 'cancasian', 'capcasian', 'caticasian', 'cau casian', 'cauc- asia', 'caucã¡sian', 'caucagian', 'caucaison', 'caucasia', 'caucasiã¡n', 'caucasiã¤n', 'caucasiar', 'caucasiari', 'caucasien', 'caucasioan', 'caucasisian', 'caucasism', 'caucassian', 'caucastan', 'caucastian', 'cauccasian', 'cauccian', 'caucesian', 'caudasian', 'caueasian', 'caugasian', 'cauoasian', 'causas ian', 'causcasian', 'caussian', 'concasion', 'coucasion', 'daucasi', 'daucasian', 'daucasion', 'gaucasian', 'gaucasion', 'saucasian', 'vaucasian', 'gaucasian cage', 'caueasien rage', 'casian', '-casian', 'Cnucasian', 'oaucasien'","concession', 'gaucas', 'cã¡ugasiah rage', 'cecilia', 'callahan'"
+calcasieu,$b,1,TRUE,confusion_term,calcasieu',caucasian'
+canadian,$b,1,TRUE,confusion_term,canadian',caucasian'
 chinese,$b,1,,,'chinese',
 citizen,,1,TRUE,bad_solo,'citizen',
-colored,$b,1,,,"colored', 'c olored', 'cblored'",State of Colorado'
+colored,$b,1,,,"colored', 'c olored', 'cblored', 'colorel person'","State of Colorado', 'dolores'"
+dolored,$b,0,TRUE,confusion_term,dolored',"colored','dolores'"
 descent,$b,1,TRUE,bad_solo,"descent', 'decent'",
 different race,$b,0,,,'different race',"different rate,different rates'"
 disorderly persons,,1,TRUE,ca_non_racial,'disorderly persons',
@@ -21,86 +26,101 @@ certificate of death,,1,TRUE,death_cert,'certificate of death',
 date of death,,1,TRUE,death_cert,'date of death',
 name of deceased,,1,TRUE,death_cert,'name of deceased',
 report of birth,,1,TRUE,death_cert,report of birth',
+certificate of hawaiian birth,,1,TRUE,death_cert,certificate of hawaiian birth',
 employed by white,,1,,,'employed by white',
 ethiopian,,1,,,'ethiopian',
 extraction,$b,1,TRUE,bad_solo,'extraction',
 filipino,,1,,,'filipino',
-gentile,$b,0,,,'gentile',gentle'
-hawaiian,,1,,,'hawaiian',
+gentile,$b,0,TRUE,bad_solo,'gentile',gentle'
+hawaiian,,1,TRUE,bad_solo,'hawaiian',
 hebrew,$b,1,,,'hebrew',herewith'
-hindu,$b,0,,,'hindu',"or hinder the said parties', 'one Hind dred and no/100 Dollars'"
+hindu,$b,0,TRUE,bad_solo,'hindu',"or hinder the said parties', 'one Hind dred and no/100 Dollars'"
 household servant,,1,,,'household servant',
-indian,$b,0,,,"indian', ' indian '",indiana'
-irish,$b,0,,,'irish',Iris C. Rawls'
+indian,$b,0,TRUE,bad_solo,"indian', ' indian '",indiana'
+irish,$b,0,TRUE,bad_solo,'irish',Iris C. Rawls'
 is forever prohibited,,1,,,'is forever prohibited',
-italian,$b,1,,,'italian',
+italian,$b,1,TRUE,bad_solo,'italian',
 japanese,,1,,,'japanese',
 jew,$b,0,,,'jew',new'
+jew (10),$b,1,TRUE,confusion_term,jew (10)',"jew', 'jewish'"
 jewish,$b,1,,,'jewish',
 less than 18 years,$b,1,TRUE,ca_non_racial,'less than 18 years',
 lineage,$b,1,,,'lineage',
 lineal descendant,$b,1,,,'lineal descendant',
 lineal descent,$b,1,,,'lineal descent',
-malay,$b,0,,,'malay',C. A. Maley'
-malayan,$b,1,,,'malayan',
+malay,$b,0,TRUE,bad_solo,'malay',C. A. Maley'
+malayan,$b,1,TRUE,bad_solo,'malayan',
 mexican,$b,1,,,'mexican',
-mongolian,,1,,,'mongolian',
-moorish,$b,1,,,'moorish',
-mulatto,$b,1,,,'mulatto',
-mulato,$b,1,,,'mulato',
-muslim,$b,1,,,'muslim',
-nigger,$b,0,,,'nigger',
+minority business enterprise,,2,TRUE,misc_exception,minority business enterprise',
+mongolian,,1,,,"mongolian', 'mongolion', 'Mongoliam'",
+moorish,$b,1,TRUE,bad_solo,'moorish',
+mulatto,$b,1,TRUE,bad_solo,'mulatto',
+mulato,$b,1,TRUE,bad_solo,'mulato',
+muslim,$b,1,TRUE,bad_solo,'muslim',
+nigger,$b,0,TRUE,misc_exception,'nigger',
 native,$b,0,,,'native',
 nationality,$b,1,TRUE,bad_solo,'nationality',
 not white,$b,0,,,people who are not white.',do not write above this line'
-negro,$b,1,,,negro',"negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township', 'neirs', 'Metro Title Corporation', 'near'"
+negro,$b,1,,,"negro', 'Nogro'","negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township', 'neirs', 'Metro Title Corporation', 'near'"
 negroes,$b,1,,,"negroes', 'given to negroes'","negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township'"
 negroid,$b,1,,,negroid',"negotiated by', 'negotiable', 'NETROPOLITAN', 'a distance of 762.5 feet to a point on or near the center line of a township'"
 no children,,1,TRUE,ca_non_racial,'no children',
 no minor,,1,TRUE,ca_non_racial,'no minor',
 occupied by any,,1,TRUE,bad_solo,'occupied by any',
+other than the applicant,,1,TRUE,confusion_term,"occupied by any person other than the applicant', 'occupied by any persons other than the applicant'",
 occupy said real property,,1,TRUE,ca_non_racial,'occupy said real property',
-oriental,$b,1,,,'oriental',
-ottoman,$b,1,,,'ottoman',Theresia Otto'
+pure blood,,1,,,"white race of the pure blood', 'white PINCE
+of the pure blood'",
+oriental,$b,1,TRUE,bad_solo,'oriental',
+ottoman,$b,1,TRUE,bad_solo,'ottoman',Theresia Otto'
 part blood,,1,,,'part blood',
 permit the occupancy,,1,,,'permit the occupancy',
-persian,$b,1,,,'persian',"person', 'persuant'"
+persian,$b,1,TRUE,bad_solo,'persian',"person', 'persuant'"
 persons not of,$b,1,TRUE,bad_solo,"person not of,persons not of'",
 person not wholly,,1,,,'person not wholly',
-persons other than,,1,TRUE,bad_solo,'persons other than',
-philippine,,1,,,'philippine',
+philippine,,1,TRUE,bad_solo,'philippine',
 polish,$b,1,TRUE,bad_solo,'polish',PUOLISHING'
 poverty,$b,0,TRUE,ca_non_racial,'poverty',property'
 race only,,1,,,'race only',
 race shall use,,1,,,'race shall use',
 racial,$b,1,TRUE,bad_solo,'racial',"Rachel', 'Rachala'"
+racial restrictions,$b,1,,,racial restrictions',
+"racial, and other restrictions",$b,2,,,"racial| and other restrictions', 'racial and other restrictions'",
 report of transfer,,1,TRUE,mil_discharge,'report of transfer',
 report of separation,,1,TRUE,mil_discharge,'report of separation',
 transfer or discharge,,1,TRUE,mil_discharge,'transfer or discharge',
 blood group,,1,TRUE,mil_discharge,'blood group',
 notice of separation,,1,TRUE,mil_discharge,notice of separation',
 place of separation,,1,TRUE,mil_discharge,place of separation',
+release or discharge,$b,1,TRUE,mil_discharge,certificate of release or discharge',
 rank and classification,,1,TRUE,mil_discharge,rank and classification',
+from active duty,$b,1,TRUE,mil_discharge,from active duty',
 service no,$b,1,TRUE,mil_discharge,service no',service nobody'
 was discharged from,,1,TRUE,mil_discharge,was discharged from',
 date enlisted,,1,TRUE,mil_discharge,date enlisted',
 enlisted record,,1,TRUE,mil_discharge,enlisted record',
 honorable discharge,,1,TRUE,mil_discharge,honorable discharge',
+warrant at time of discharge,,2,TRUE,mil_discharge,warrant at time of discharge',
+special military qualifications,,2,TRUE,mil_discharge,special military qualifications',
 relating to race,,1,,,'relating to race',
 restricted to those,,1,,,'restricted to those',
-said races,$b,1,,,'said races',
+said races,$b,1,TRUE,bad_solo,'said races',
 semites,$b,1,,,'semites',
-semitic,$b,1,,,"semetic', 'semitic', 'simitic'",
+semitic,$b,1,,,"semetic', 'semitic', 'simitic', 'Semotic'",septic'
+simitic,$b,1,,,simitic',septic'
+seretic,$b,1,,,Seretic',septic'
 servant,,1,TRUE,bad_solo,'servant',
 shall not prevent occupancy,,1,,,'shall not prevent occupancy',
 squaw,$b,0,,,'squaw',"square', 'in Square No.', 'squad'"
 such races,,0,,,'such races',such rates'
-syrian,$b,1,,,'syrian',
-turkish,$b,1,,,'turkish',furnished'
+syrian,$b,1,TRUE,bad_solo,'syrian',
+turkish,$b,1,TRUE,bad_solo,'turkish',furnished'
 under the age of,,1,TRUE,ca_non_racial,'under the age of',
 used or occupied,,1,TRUE,bad_solo,'used or occupied',
-white or,$b,1,TRUE,bad_solo,'white or',"whole or', 'GUY WHITEFORD', 'White Granite'"
+white or,$b,0,TRUE,bad_solo,'white or',"whole or', 'GUY WHITEFORD', 'White Granite', 'write or type'"
 white person,,1,,,'white person',
+white people,,1,TRUE,,white people',
 white race,,1,,,'white race',
+white family,,1,,,white family',
 years of age or older,,1,TRUE,ca_non_racial,'years of age or older',
-yellow race,,1,,,'yellow race',
+yellow race,,1,,,"yellow race', 'black or yellow races'",

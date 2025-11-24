@@ -120,7 +120,7 @@ def test_match(term_obj, text):
 
     # pattern = regex.compile(f"{term['prefix']}(?:{term['term']}){tolerance}{term['suffix']}".replace('$s', ' '))
     pattern = regex.compile(f"\\b(?:{term_obj['term']}){tolerance}{term_obj['suffix']}".replace('$b', '\\b'))
-    # print(pattern)
+    print(pattern)
     if regex.search(pattern, text):
         return True
     return False
